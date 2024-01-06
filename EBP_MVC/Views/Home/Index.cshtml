@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Form to transform values";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EBP_MVC.Models.ModelTransformation
+
+
+<h3>@ViewBag.Title</h3>
+
+<div>
+
+    @using (Html.BeginForm("Transform", "Home", FormMethod.Post))
+    {
+
+        <table>
+
+            <tr>
+                <td valign="top">@Html.LabelFor(m => m.OriginalText, htmlAttributes: "style:valign:top")</td>
+                <td>
+                    @Html.EditorFor(m => m.OriginalText)
+                    @Html.ValidationMessageFor(m => m.OriginalText)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(m => m.DropDownTraitementLiteralName)</td>
+                <td>
+                    @Html.DropDownListFor(
+                     m => m.DropDownTraitementField
+                            , new SelectList
+                            (
+                            @Model.DropDownTraitementItems
+                            , LibTraitement.Domain.Traitement.KEYPROPERTY
+                            , LibTraitement.Domain.Traitement.VALUEPROPERTY
+                            )
+                    )
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Transform value" />
+                </td>
+
+            </tr>
+
+        </table>
+
+    }
+
+</div>

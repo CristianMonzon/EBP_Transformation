@@ -1,0 +1,67 @@
+﻿@model EBP_MVC.Models.ModelTransformation
+
+@{
+    ViewBag.Title = "Form to transform values with AJAX";
+    Layout = "~/Views/Shared/_LayoutAjax.cshtml";
+
+    AjaxOptions ajaxOptions = new AjaxOptions()
+    {
+        UpdateTargetId = "IdResultat",
+        HttpMethod = "post",
+        LoadingElementDuration = 2000,
+        LoadingElementId = "IdLoading"
+    };
+}
+
+<h3>@ViewBag.Title</h3>
+
+<div>
+    @using (Ajax.BeginForm("TransformationAjax", ajaxOptions))
+    {
+        <table>
+
+            <tr>
+                <td valign="top">@Html.LabelFor(m => m.OriginalText, htmlAttributes: "style:valign:top")</td>
+                <td>
+                    @Html.EditorFor(m => m.OriginalText)
+                    @Html.ValidationMessageFor(m => m.OriginalText)
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(m => m.DropDownTraitementLiteralName)</td>
+                <td>
+                    @Html.DropDownListFor(
+                     m => m.DropDownTraitementField
+                            , new SelectList
+                            (
+                            @Model.DropDownTraitementItems
+                            , LibTraitement.Domain.Traitement.KEYPROPERTY
+                            , LibTraitement.Domain.Traitement.VALUEPROPERTY
+                            )
+                    )
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Transform value" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <div id="IdLoading" style="display:none;">Loading information ...</div>
+                </td>
+            </tr>
+
+        </table>
+
+    }
+
+</div>
+
+
+<div id="IdResultat"></div>

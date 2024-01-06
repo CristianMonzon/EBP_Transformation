@@ -1,0 +1,28 @@
+﻿@model EBP_MVC.Models.ModelTransformation
+@{
+    ViewBag.Title = "Transform";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+
+    <table>
+
+        <tr><td><b>@Html.LabelFor(m => m.OriginalText)</b></td></tr>
+        <tr><td><pre>@Html.DisplayFor(m=>m.OriginalText)</pre></td></tr>
+
+        <tr><td><b>@Html.LabelFor(m => m.FinalText)</b></td></tr>
+        <tr><td><pre>@Html.DisplayFor(m=>m.FinalText)</pre></td></tr>
+       
+        <tr><td><b>@Html.LabelFor(m => m.DropDownTraitementLiteralName)</b></td></tr>
+        <tr><td>@Model.DropDownTraitementField</td></tr>
+
+    </table>
+
+</div>
+
+<div>
+   @Html.ActionLink("<<--Back to home page","Index","Home")
+</div>
