@@ -13,6 +13,3 @@ Liskov
 Notas :
 El la clase abstracta baseTransformation se utiliza para ejecutar el metodo Transform
 El namespace LibTraitement.Domain es para las operaciones.
-
-2024.01
-Pasar a modelo GP
